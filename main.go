@@ -1,9 +1,11 @@
 package main
 
 import (
-	"github.com/jiro4989/ojosama"
+	"fmt"
 	"os"
 	"os/exec"
+
+	"github.com/jiro4989/ojosama"
 )
 
 func main() {
@@ -11,11 +13,14 @@ func main() {
 
 	text, err := ojosama.Convert(args, nil)
 	if err != nil {
-		panic(err)
+		fmt.Println("メッセージの変換に失敗してしまいましたわ。")
+		os.Exit(1)
 	}
 
-	err = exec.Command("git", "commit", "-m", text).Run()
+	out, err := exec.Command("git", "commit", "-m", text).Output()
 	if err != nil {
-		panic(err)
+		fmt.Println("commitに失敗してしまいましたわ。")
+		os.Exit(1)
 	}
+	fmt.Println(string(out))
 }
