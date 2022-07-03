@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
 	"github.com/jiro4989/ojosama"
 	"os"
+	"os/exec"
 )
 
 func main() {
@@ -13,5 +13,9 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(text)
+
+	err = exec.Command("git", "commit", "-m", text).Run()
+	if err != nil {
+		panic(err)
+	}
 }
