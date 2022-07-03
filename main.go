@@ -9,6 +9,10 @@ import (
 )
 
 func main() {
+	if len(os.Args) != 2 {
+		fmt.Println("引数の数が間違っておりましてよ。")
+		os.Exit(1)
+	}
 	args := os.Args[1]
 
 	text, err := ojosama.Convert(args, nil)
@@ -19,7 +23,7 @@ func main() {
 
 	out, err := exec.Command("git", "commit", "-m", text).Output()
 	if err != nil {
-		fmt.Println("commitに失敗してしまいましたわ。")
+		fmt.Println("commitに失敗してしまいましたわ。addはしましたの？")
 		os.Exit(1)
 	}
 	fmt.Println(string(out))
