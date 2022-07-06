@@ -1,4 +1,4 @@
-module ogo
+module github.com/Sigumaa/ojosama-gommit
 
 go 1.16
 
